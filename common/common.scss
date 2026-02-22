@@ -134,14 +134,17 @@
 
   .activity,
   .main-link,
-  .posters {
+  .posters,
+  .topic-activity-data,
+  .topic-creator-data {
     z-index: 2;
     position: relative;
     background-color: rgb(var(--primary-low-rgb), 0.85);
     max-width: none;
   }
 
-  &.topic-list .posters {
+  &.topic-list .posters,
+  &.topic-list .topic-creator-data {
     height: auto;
     grid-area: posters;
     padding: 0 10px 10px 10px;
@@ -166,7 +169,10 @@
 
   .posts-map,
   .views,
-  .topic-excerpt {
+  .topic-excerpt,
+  .topic-likes-replies-data,
+  .topic-status-data,
+  .topic-category-data {
     display: none;
   }
 
@@ -179,7 +185,8 @@
     min-width: 0;
   }
 
-  .num.activity {
+  .num.activity,
+  .topic-activity-data {
     grid-area: activity;
     display: flex;
     justify-content: flex-end;
@@ -250,7 +257,11 @@
   .views,
   .topic-excerpt,
   .num.activity,
-  .link-bottom-line {
+  .link-bottom-line,
+  .topic-activity-data,
+  .topic-creator-data,
+  .topic-status-data,
+  .topic-category-data {
     display: none;
   }
 
@@ -273,7 +284,8 @@
     }
   }
 
-  .posts-map {
+  .posts-map,
+  .topic-likes-replies-data {
     padding: 0;
     grid-area: posts;
     display: flex;
@@ -286,7 +298,8 @@
       padding: 0;
     }
 
-    span.number {
+    span.number,
+    .number {
       color: var(--primary-low-mid);
       display: flex;
       justify-content: flex-end;
@@ -303,6 +316,11 @@
         width: 13px;
         margin-right: 0.5em;
       }
+    }
+
+    // Horizon theme: hide the reply icon, keep just the number
+    .topic-replies .d-icon {
+      display: none;
     }
   }
 
@@ -334,7 +352,9 @@
 }
 
 .topic-thumbnails-blog-style-grid {
-  .num.posts-map {
+
+  .num.posts-map,
+  .topic-likes-replies-data {
     display: none;
   }
 
@@ -446,10 +466,7 @@
     position: absolute;
     height: var(--masonry-height);
     width: var(--masonry-column-width);
-    left: calc(
-      (var(--masonry-column-width) + var(--masonry-grid-spacing)) *
-        var(--masonry-column-index)
-    );
+    left: calc((var(--masonry-column-width) + var(--masonry-grid-spacing)) * var(--masonry-column-index));
     top: var(--masonry-height-above);
   }
 }

@@ -5,6 +5,8 @@
 
 .topic-thumbnails-list {
   .topic-list-body .topic-list-item {
+
+    // Classic Discourse mobile layout
     .right {
       display: grid;
       grid-template-columns: 15% auto 15%;
@@ -31,6 +33,15 @@
       .pull-right {
         grid-area: replies;
       }
+    }
+
+    // Horizon theme: hide extra columns on mobile in list mode
+    .topic-status-data,
+    .topic-category-data,
+    .topic-likes-replies-data,
+    .topic-creator-data,
+    .topic-activity-data {
+      display: none;
     }
   }
 }
@@ -60,7 +71,8 @@
         }
       }
 
-      .posts-map {
+      .posts-map,
+      .topic-likes-replies-data {
         display: none;
       }
     }
