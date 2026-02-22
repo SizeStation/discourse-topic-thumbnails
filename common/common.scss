@@ -86,17 +86,7 @@
   .main-link {
     position: relative;
     overflow: hidden;
-
-    // For fixed thumbnail sizes (200/400), create an invisible spacer that
-    // makes this cell naturally tall enough for the thumbnail's aspect ratio.
-    // This lets the topic-cards grid handle everything else normally (like auto mode).
-    &::before {
-      content: "";
-      display: block;
-      float: left;
-      width: 0;
-      min-height: calc(var(--thumbnail-width, 0px) * 3 / 4);
-    }
+    min-height: var(--thumbnail-height, auto);
   }
 
   .topic-list-thumbnail {

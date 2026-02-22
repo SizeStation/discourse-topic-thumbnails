@@ -38,7 +38,9 @@ export default class TopicListThumbnail extends Component {
       element.style.width = px;
       mainLink.style.setProperty("--thumbnail-width", px);
 
-      // Height is handled by CSS (main-link::before min-height based on --thumbnail-width)
+      // For fixed sizes, set min-height on main-link so it grows to fit the thumbnail
+      const height = parseInt(size, 10) * 3 / 4;
+      mainLink.style.setProperty("--thumbnail-height", `${height}px`);
     }
   });
 
