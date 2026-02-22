@@ -83,10 +83,13 @@
 // List mode: thumbnail absolutely positioned on the right inside main-link
 .topic-thumbnails-list {
 
+  .topic-list-item>td:not(.main-link):not(.topic-creator-data) {
+    align-self: end !important;
+  }
+
   .main-link {
     position: relative;
     overflow: hidden;
-    min-height: var(--thumbnail-height, auto);
   }
 
   .topic-list-thumbnail {
