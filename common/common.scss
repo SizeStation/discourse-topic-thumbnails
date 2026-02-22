@@ -80,11 +80,12 @@
   }
 }
 
-// List mode: thumbnail is its own column (not floated inside main-link)
+// List mode: thumbnail floats to the right inside main-link
 .topic-thumbnails-list {
   .topic-list-thumbnail {
-    float: none;
+    float: right;
     margin-right: 0;
+    margin-left: 10px;
   }
 }
 

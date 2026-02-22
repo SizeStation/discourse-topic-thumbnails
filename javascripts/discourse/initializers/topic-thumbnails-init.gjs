@@ -22,18 +22,12 @@ export default apiInitializer((api) => {
   });
 
   api.registerValueTransformer("topic-list-columns", ({ value: columns }) => {
-    if (ttService.enabledForRoute) {
-      if (ttService.displayList) {
-        // List mode: add thumbnail as the last column (right side)
-        columns.add("thumbnail", { item: TopicListThumbnail });
-      } else {
-        // Grid/masonry/minimal modes: add thumbnail before the topic column
-        columns.add(
-          "thumbnail",
-          { item: TopicListThumbnail },
-          { before: "topic" }
-        );
-      }
+    if (ttService.enabledForRoute && !ttService.displayList) {
+      columns.add(
+        "thumbnail",
+        { item: TopicListThumbnail },
+        { before: "topic" }
+      );
     }
     return columns;
   });
@@ -41,7 +35,9 @@ export default apiInitializer((api) => {
   api.renderInOutlet(
     "topic-list-before-link",
     <template>
-      {{! Intentionally empty - list mode uses column approach }}
+      {{#if ttService.displayList}}
+        <TopicListThumbnail @topic={{@outletArgs.topic}} />
+      {{/if}}
     </template>
   );
 
