@@ -89,6 +89,7 @@
   // cells that use display:flex (e.g. topic-cards).
   .topic-list-item>td:not(.main-link) {
     vertical-align: bottom !important;
+    align-self: end !important;
     align-items: flex-end !important;
     justify-content: flex-end !important;
   }
