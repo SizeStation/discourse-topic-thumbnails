@@ -38,14 +38,7 @@ export default class TopicListThumbnail extends Component {
       element.style.width = px;
       mainLink.style.setProperty("--thumbnail-width", px);
 
-      // For fixed sizes, grow the row to fit the thumbnail's aspect ratio (4:3).
-      // min-height doesn't work on <td>/<tr> table elements, but height acts as
-      // a minimum (the row will still grow if content is taller).
-      const height = parseInt(size, 10) * 3 / 4;
-      const row = mainLink.closest(".topic-list-item");
-      if (row) {
-        row.style.height = `${height}px`;
-      }
+      // Height is handled by CSS (main-link::before min-height based on --thumbnail-width)
     }
   });
 
