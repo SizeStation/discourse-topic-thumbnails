@@ -88,8 +88,9 @@
   // vertical-align handles classic table-cell layout; align-items handles
   // cells that use display:flex (e.g. topic-cards).
   .topic-list-item>td:not(.main-link) {
-    vertical-align: bottom;
-    align-items: flex-end;
+    vertical-align: bottom !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
   }
 
   .main-link {
