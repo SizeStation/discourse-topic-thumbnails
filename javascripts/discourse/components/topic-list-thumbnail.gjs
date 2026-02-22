@@ -37,6 +37,10 @@ export default class TopicListThumbnail extends Component {
       const px = `${size}px`;
       element.style.width = px;
       mainLink.style.setProperty("--thumbnail-width", px);
+
+      // For fixed sizes, grow the container to fit the thumbnail's aspect ratio (4:3)
+      const height = parseInt(size, 10) * 3 / 4;
+      mainLink.style.minHeight = `${height}px`;
     }
   });
 
