@@ -19,6 +19,11 @@ export default class TopicListThumbnail extends Component {
       return;
     }
 
+    if (!this.hasThumbnail) {
+      mainLink.style.setProperty("--thumbnail-width", "0px");
+      return;
+    }
+
     const size = settings.list_thumbnail_size;
 
     if (size === "auto") {
@@ -117,10 +122,6 @@ export default class TopicListThumbnail extends Component {
     return this.original.url;
   }
 
-  get shouldHide() {
-    return this.topicThumbnails.displayList && !this.hasThumbnail;
-  }
-
   get url() {
     return this.topic.get("linked_post_number")
       ? this.topic.urlForPostNumber(this.topic.get("linked_post_number"))
@@ -128,7 +129,6 @@ export default class TopicListThumbnail extends Component {
   }
 
   <template>
-    {{#unless this.shouldHide}}
     <div
       {{this.syncThumbnailWidth}}
       class={{concatClass
@@ -209,6 +209,5 @@ export default class TopicListThumbnail extends Component {
         </div>
       </div>
     {{/if}}
-    {{/unless}}
   </template>
 }
