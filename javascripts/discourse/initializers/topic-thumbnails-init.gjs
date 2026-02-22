@@ -3,13 +3,6 @@ import { service } from "@ember/service";
 import { apiInitializer } from "discourse/lib/api";
 import TopicListThumbnail from "../components/topic-list-thumbnail";
 
-// Wrapper that renders the thumbnail inside a <td> for use as a table column
-const TopicListThumbnailCell = <template>
-  <td class="topic-thumbnail-cell">
-    <TopicListThumbnail @topic={{@topic}} />
-  </td>
-</template>;
-
 export default apiInitializer((api) => {
   const ttService = api.container.lookup("service:topic-thumbnails");
 
@@ -29,21 +22,24 @@ export default apiInitializer((api) => {
   });
 
   api.registerValueTransformer("topic-list-columns", ({ value: columns }) => {
-    if (ttService.enabledForRoute) {
-      if (ttService.displayList) {
-        // List mode: add thumbnail as the last column (right side) wrapped in <td>
-        columns.add("thumbnail", { item: TopicListThumbnailCell });
-      } else {
-        // Grid/masonry/minimal modes: add thumbnail before the topic column
-        columns.add(
-          "thumbnail",
-          { item: TopicListThumbnail },
-          { before: "topic" }
-        );
-      }
+    if (ttService.enabledForRoute && !ttService.displayList) {
+      columns.add(
+        "thumbnail",
+        { item: TopicListThumbnail },
+        { before: "topic" }
+      );
     }
     return columns;
   });
+
+  api.renderInOutlet(
+    "topic-list-before-link",
+    <template>
+      {{#if ttService.displayList}}
+        <TopicListThumbnail @topic={{@outletArgs.topic}} />
+      {{/if}}
+    </template>
+  );
 
   api.registerValueTransformer("topic-list-item-mobile-layout", ({ value }) => {
     if (ttService.enabledForRoute && !ttService.displayList) {
