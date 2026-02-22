@@ -17,4 +17,4 @@ en:
       enable_outside_topic_lists: Enable thumbnails on non-topic-list pages (e.g. user activity, personal messages, suggested topics)
       placeholder_icon: Icon to display on topics without thumbnail images
       mobile_thumbnails: Enable thumbnails on mobile devices
-      list_thumbnail_size: Base size for thumbnails in the 'list' view
+      list_thumbnail_size: "Thumbnail size in 'list' view. 'auto' scales with row height, or pick a fixed pixel width."

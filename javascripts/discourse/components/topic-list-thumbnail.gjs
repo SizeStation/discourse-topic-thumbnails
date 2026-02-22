@@ -19,26 +19,36 @@ export default class TopicListThumbnail extends Component {
       return;
     }
 
-    const update = () => {
-      const width = element.getBoundingClientRect().width;
-      mainLink.style.setProperty("--thumbnail-width", `${width}px`);
-    };
+    const size = settings.list_thumbnail_size;
 
-    update();
+    if (size === "auto") {
+      const update = () => {
+        const width = element.getBoundingClientRect().width;
+        mainLink.style.setProperty("--thumbnail-width", `${width}px`);
+      };
 
-    const observer = new ResizeObserver(update);
-    observer.observe(element);
+      update();
 
-    return () => observer.disconnect();
+      const observer = new ResizeObserver(update);
+      observer.observe(element);
+
+      return () => observer.disconnect();
+    } else {
+      const px = `${size}px`;
+      element.style.width = px;
+      mainLink.style.setProperty("--thumbnail-width", px);
+    }
   });
 
   responsiveRatios = [1, 1.5, 2];
 
   // Make sure to update about.json thumbnail sizes if you change these variables
   get displayWidth() {
-    return this.topicThumbnails.displayList
-      ? settings.list_thumbnail_size
-      : 400;
+    if (!this.topicThumbnails.displayList) {
+      return 400;
+    }
+    const size = settings.list_thumbnail_size;
+    return size === "auto" ? 200 : parseInt(size, 10);
   }
 
   get topic() {
