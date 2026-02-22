@@ -82,6 +82,10 @@
 
 // List mode: thumbnail absolutely positioned on the right inside main-link
 .topic-thumbnails-list {
+  .topic-list-item > td {
+    vertical-align: middle;
+  }
+
   .main-link {
     position: relative;
     overflow: hidden;
