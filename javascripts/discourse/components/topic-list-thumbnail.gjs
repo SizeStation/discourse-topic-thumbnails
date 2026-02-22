@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
+import { modifier } from "ember-modifier";
 import coldAgeClass from "discourse/helpers/cold-age-class";
 import concatClass from "discourse/helpers/concat-class";
 import dIcon from "discourse/helpers/d-icon";
@@ -7,6 +8,29 @@ import formatDate from "discourse/helpers/format-date";
 
 export default class TopicListThumbnail extends Component {
   @service topicThumbnails;
+
+  syncThumbnailWidth = modifier((element) => {
+    if (!this.topicThumbnails.displayList) {
+      return;
+    }
+
+    const mainLink = element.closest(".main-link");
+    if (!mainLink) {
+      return;
+    }
+
+    const update = () => {
+      const width = element.getBoundingClientRect().width;
+      mainLink.style.setProperty("--thumbnail-width", `${width}px`);
+    };
+
+    update();
+
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  });
 
   responsiveRatios = [1, 1.5, 2];
 
@@ -84,6 +108,7 @@ export default class TopicListThumbnail extends Component {
 
   <template>
     <div
+      {{this.syncThumbnailWidth}}
       class={{concatClass
         "topic-list-thumbnail"
         (if this.hasThumbnail "has-thumbnail" "no-thumbnail")
