@@ -80,12 +80,19 @@
   }
 }
 
-// List mode: thumbnail floats to the right inside main-link
+// List mode: thumbnail is its own <td> column at the end of the row
 .topic-thumbnails-list {
+  .topic-thumbnail-cell {
+    width: 140px;
+    padding: 5px;
+    vertical-align: middle;
+  }
+
   .topic-list-thumbnail {
-    float: right;
-    margin-right: 0;
-    margin-left: 10px;
+    float: none;
+    margin: 0;
+    width: 100%;
+    height: 100px;
   }
 }
 
