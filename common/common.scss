@@ -84,6 +84,7 @@
 .topic-thumbnails-list {
   .main-link {
     position: relative;
+    overflow: hidden;
   }
 
   .topic-list-thumbnail {
@@ -94,7 +95,9 @@
     float: none;
     margin: 0;
     width: auto;
+    height: 100%;
     aspect-ratio: 4 / 3;
+    z-index: 0;
 
     .background-thumbnail {
       display: none;
