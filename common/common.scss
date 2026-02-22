@@ -122,9 +122,6 @@
   .link-top-line,
   .link-bottom-line {
     padding-right: var(--thumbnail-width, 150px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }
 
