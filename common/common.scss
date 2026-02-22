@@ -80,6 +80,14 @@
   }
 }
 
+// List mode: thumbnail is its own column (not floated inside main-link)
+.topic-thumbnails-list {
+  .topic-list-thumbnail {
+    float: none;
+    margin-right: 0;
+  }
+}
+
 .topic-thumbnails-grid,
 .topic-thumbnails-masonry {
   margin-top: 5px;
